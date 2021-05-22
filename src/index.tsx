@@ -1,11 +1,8 @@
-import React, {StrictMode} from 'react';
+import React, {StrictMode, Suspense} from 'react';
 import {render} from 'react-dom';
-import {createGlobalStyle} from 'styled-components';
-
 import 'configs/i18n.js';
-
-import {App} from './App';
 import reportWebVitals from './reportWebVitals';
+import {App} from 'App';
 
 const {REACT_APP_ENABLE_MOCK} = process.env;
 
@@ -14,16 +11,11 @@ if (REACT_APP_ENABLE_MOCK === 'on') {
   worker.start();
 }
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    background: #eee;
-  }
-`;
-
 render(
   <StrictMode>
-    <GlobalStyle />
-    <App />
+    <Suspense fallback={<></>}>
+      <App />
+    </Suspense>
   </StrictMode>,
   document.getElementById('root'),
 );
