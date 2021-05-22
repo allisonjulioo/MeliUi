@@ -67,7 +67,13 @@ const theme = {
     large: '32px',
   },
   nav: {
-    height: '50px',
+    height: '60px',
+  },
+  input: {
+    size: '18px',
+    height: '39px',
+    radius: '3px',
+    border: 'none',
   },
 };
 

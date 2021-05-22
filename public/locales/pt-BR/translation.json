@@ -1,4 +1,11 @@
 {
+  "header": {
+    "altIconLogo": "Logotipo do mercado livre"
+  },
+  "searchBar": {
+    "placeholder": "Nunca deixe de pesquisar",
+    "altIconSearch": "Ícone de busca"
+  },
   "searchPage": {
     "title": "Página de busca"
   }

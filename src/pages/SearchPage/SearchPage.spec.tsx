@@ -16,7 +16,6 @@ describe('pages/', () => {
   test('Elements in view', async () => {
     configRoute();
     const {findByText, debug} = render(<App />);
-    await findByText(/Navegação/i);
     await findByText(/Página de busca/i);
   });
 });

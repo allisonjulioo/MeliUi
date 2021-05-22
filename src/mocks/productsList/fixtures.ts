@@ -1,30 +1,40 @@
 const success = {
   data: {
-    productsList: {
-      confirm: true,
+    author: {
+      name: 'Allison',
+      lastname: 'Nunes',
     },
+    categories: ['smartphone', 'eletronico', 'apple'],
+    items: [
+      {
+        id: 1,
+        title: 'Deco reverse Sombrero Oxford',
+        price: {
+          currency: 'pt-BR',
+          amount: 1980,
+          decimals: 0,
+        },
+        picture:
+          'https://cdn.dooca.store/165/products/rvawndot1g3dg1azralwm7zh8xkbtqx8u3v1_620x620+fill_ffffff.jpg?v=1606182673',
+        condition: 'Novo',
+        free_shipping: true,
+      },
+    ],
   },
-  errors: [],
 };
 
-const invalidToken = {
+const notFound = {
   data: {},
   errors: [
     {
-      message: 'Token is invalid or already used',
-      locations: [
-        {
-          line: 2,
-          column: 3,
-        },
-      ],
+      message: 'Not found products',
       path: ['productsList'],
       extensions: {
-        argumentName: 'token',
-        code: 'BAD_USER_INPUT',
+        argumentName: 'Not found',
+        code: 'NOT_FOUND',
       },
     },
   ],
 };
 
-export {success, invalidToken};
+export {success, notFound};

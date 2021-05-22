@@ -1,14 +1,14 @@
 import {graphql} from 'msw';
-import {success, invalidToken} from './fixtures';
+import {success, notFound} from './fixtures';
 
 const handlers = [
-  graphql.mutation('productsList', (req, res, ctx) => {
+  graphql.query('GetProducts', (req, res, ctx) => {
     const {token} = req.variables;
     sessionStorage.setItem('@@msw:scenarios', token);
 
     switch (token) {
-      case 'invalid_token':
-        return res(ctx.data(invalidToken), ctx.errors(invalidToken.errors));
+      case 'not_found':
+        return res(ctx.data(notFound), ctx.errors(notFound.errors));
       case 'success':
       default:
         return res(ctx.data(success.data));

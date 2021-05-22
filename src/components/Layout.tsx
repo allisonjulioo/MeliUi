@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 import {theme} from 'theme';
+import {columnJustifyBetween} from 'theme/mixins';
 
 const Layout = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   height: 100%;
   max-width: ${theme.container.width};
   margin: 0 auto;
   padding-top: ${theme.spacing.small};
+  ${columnJustifyBetween}
 `;
 
 const LayoutHeader = styled.div``;
