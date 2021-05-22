@@ -1,17 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React, {StrictMode} from 'react';
+import {render} from 'react-dom';
+import {createGlobalStyle} from 'styled-components';
+
+import 'configs/i18n.js';
+
+import {App} from './App';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
+const {REACT_APP_ENABLE_MOCK} = process.env;
+
+if (REACT_APP_ENABLE_MOCK === 'on') {
+  const {worker} = require('./mocks/browser.ts');
+  worker.start();
+}
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: #eee;
+  }
+`;
+
+render(
+  <StrictMode>
+    <GlobalStyle />
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </StrictMode>,
+  document.getElementById('root'),
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
