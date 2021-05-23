@@ -4,7 +4,8 @@ name: 'Pipeline Meli Development'
 on:
   push:
     branches:
-      - master
+      - '**'
+      - '!master'
 
 # jobs to run
 jobs:
