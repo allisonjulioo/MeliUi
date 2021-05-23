@@ -16,9 +16,31 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Cache
+        uses: actions/cache@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm run build
-      - run: npm test
+          path: ./node_modules
+          key:
+            ${{ runner.os }}-cache-node-modules-${{ hashFiles('./yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cache-node-modules-
+            ${{ runner.os }}-
+      - name: Install Dependencies
+        run: yarn install
+
+tests:
+  runs-on: ubuntu-latest
+  needs: install
+  steps:
+    - uses: actions/checkout@v2
+    - name: Cache
+      uses: actions/cache@v2
+      with:
+        path: ./node_modules
+        key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('./yarn.lock') }}
+    - name: Lint
+      run: yarn lint
+    - name: Test
+      run: yarn test
