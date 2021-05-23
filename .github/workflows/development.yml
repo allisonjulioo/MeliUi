@@ -1,13 +1,15 @@
 name: 'Pipeline Meli Development'
 
+# execute on events
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches:
+      - master
 
+# jobs to run
 jobs:
   install:
+    name: Install
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,17 +18,26 @@ jobs:
           key:
             ${{ runner.os }}-cache-node-modules-${{ hashFiles('./yarn.lock') }}
       - name: Install Dependencies
-        run: yarn install
-  tests:
+        run: yarn installd
+  test:
+    name: Test
     runs-on: ubuntu-latest
     needs: install
     steps:
-      - uses: actions/checkout@v2
+      # 1: setup node
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
         with:
-          path: ./node_modules
-          key:
-            ${{ runner.os }}-cache-node-modules-${{ hashFiles('./yarn.lock') }}
-      - name: Back folder
-        run: yarn lint
-      - name: Test
+          node-version: 12
+
+      # 2: Checkout repository in the CWD
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # 3: install NPM dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # 4: run test command
+      - name: Run test comm
         run: yarn test
