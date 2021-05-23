@@ -3,4 +3,9 @@ const searchPage = {
   path: '/',
   exact: true,
 };
-export {searchPage};
+const resultsSearchPage = {
+  key: 'RESULTS_SEARCH_PAGE',
+  path: '/items/',
+  exact: true,
+};
+export {searchPage, resultsSearchPage};

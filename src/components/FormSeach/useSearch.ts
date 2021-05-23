@@ -1,6 +1,6 @@
-import {useState, useCallback, useContext} from 'react';
-import debounce from 'lodash.debounce';
+import {useState, useContext} from 'react';
 import {ContextProducts} from 'useList';
+import debounce from 'lodash.debounce';
 import {queryProducts} from './useSearchService';
 
 export interface Search {
@@ -9,21 +9,12 @@ export interface Search {
 
 const useSearch = () => {
   const [state, setState] = useContext(ContextProducts);
-  const [error, setError] = useState<unknown>();
+  const getListProducts = async (search: string) => {
+    const {data, errors} = await queryProducts(search);
+    setState({data, errors, search});
 
-  const getListProducts = useCallback(
-    async (value: string) => {
-      const {data, errors} = await queryProducts(value);
-
-      if (data) {
-        setState(data);
-        return {data};
-      }
-      setError(errors);
-      return {error};
-    },
-    [setState, error],
-  );
+    return {data, errors};
+  };
 
   const [debouncedSearch] = useState(() => debounce(getListProducts, 500));
 

@@ -1,4 +1,5 @@
 const theme = {
+  radius: '3px',
   container: {
     width: '900px',
   },
@@ -9,30 +10,31 @@ const theme = {
     dark2: '#666666',
     dark3: '#999999',
     light: '#eeeeee',
+    white: '#ffffff',
   },
   h1: {
     size: '46px',
-    light: 'black',
+    color: 'black',
     weight: 'normal',
   },
   h2: {
     size: '28px',
-    light: 'black',
+    color: 'black',
     weight: 'normal',
   },
   h3: {
     size: '24px',
-    light: 'black',
+    color: 'black',
     weight: 'bold',
   },
   paragraph: {
-    size: '16px',
-    light: 'black',
+    size: '18px',
+    color: 'black',
     weight: 'normal',
   },
   small: {
     size: '14px',
-    light: 'black',
+    color: 'black',
     weight: '100',
   },
   button: {
@@ -72,7 +74,7 @@ const theme = {
   input: {
     size: '18px',
     height: '39px',
-    radius: '3px',
+    radius: '4px',
     border: 'none',
   },
 };

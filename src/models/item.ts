@@ -6,6 +6,10 @@ export interface Item {
     amount: number;
     decimals: number;
   };
+  state: {
+    id: string;
+    name: string;
+  };
   picture: string;
   condition: string;
   free_shipping: boolean;
