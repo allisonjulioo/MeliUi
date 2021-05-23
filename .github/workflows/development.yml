@@ -27,8 +27,6 @@ jobs:
           key:
             ${{ runner.os }}-cache-node-modules-${{ hashFiles('./yarn.lock') }}
       - name: Back folder
-        run: cd ..
-      - name: Lint
         run: yarn lint
       - name: Test
         run: yarn test
