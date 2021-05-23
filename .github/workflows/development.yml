@@ -1,24 +1,24 @@
-name: 'Pipeline Meli Test Development'
+name: 'Pipeline Meli Development'
 
 on:
   push:
-    branches:
-      - '**'
-      - '!master'
+    branches: [master]
+  pull_request:
+    branches: [master]
 
-  tests:
+jobs:
+  build:
     runs-on: ubuntu-latest
-    needs: install
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
     steps:
       - uses: actions/checkout@v2
-      - name: Cache
-        uses: actions/cache@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          path: ./node_modules
-          key:
-            ${{ runner.os }}-cache-node-modules-${{ hashFiles('./yarn.lock') }}
-      - name: Lint
-        run: yarn lint
-      - name: Test
-        run: yarn test
- 
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm test
