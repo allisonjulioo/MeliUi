@@ -4,17 +4,21 @@ import {GlobalStyle} from 'theme/global';
 import {Header} from 'components/Header';
 import {Layout} from 'components/Layout';
 import {ProductsContext} from 'useList';
+import {BreadCrumb} from 'components/BreadCrumb';
+import {BrowserRouter} from 'react-router-dom';
 
 const App = () => {
   return (
-    <ProductsContext>
-      <GlobalStyle />
-      <Header />
-      <Layout>
-        <Router />
-      </Layout>
-    </ProductsContext>
+    <BrowserRouter>
+      <ProductsContext>
+        <GlobalStyle />
+        <Header />
+        <BreadCrumb />
+        <Layout>
+          <Router />
+        </Layout>
+      </ProductsContext>
+    </BrowserRouter>
   );
 };
-
 export {App};

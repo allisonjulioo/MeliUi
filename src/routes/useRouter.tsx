@@ -1,21 +1,32 @@
-import {useHistory} from 'react-router';
-import {searchPage} from './base';
-
-const scenarions = [
-  {
-    key: searchPage.key,
-    route: {...searchPage},
-  },
-];
+import {useHistory, useLocation} from 'react-router';
+import {useContext, useEffect} from 'react';
+import {ContextSearch} from 'models/context';
+import {ContextProducts} from 'useList';
+import {resultsSearchPage} from './base';
 
 const useRouter = () => {
   const history = useHistory();
+  const {search: queryString} = useLocation();
 
-  function nextPage<T>(routerKey: string, options?: T) {
-    const scenario = scenarions.find(({key}) => key === routerKey);
-    history.push(scenario?.route.path ?? '/', {...options});
-  }
+  const [context] = useContext<ContextSearch[]>(ContextProducts);
+  const {search} = context ?? {search: ''};
 
-  return {nextPage};
+  const searchParams = () => {
+    const params = new URLSearchParams(queryString);
+    const value = params.get('search');
+
+    return {value};
+  };
+
+  useEffect(() => {
+    if (search.length > 0) {
+      return history.push({
+        pathname: resultsSearchPage.path,
+        search: `?search=${search}`,
+      });
+    }
+  }, [search, history]);
+
+  return {searchParams};
 };
 export {useRouter};

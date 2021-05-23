@@ -1,5 +1,6 @@
-import {searchPage} from './base';
+import {searchPage, resultsSearchPage} from './base';
 
 const searchPagePath = () => searchPage.path;
+const resultsSearchPagePath = () => resultsSearchPage.path;
 
-export {searchPagePath};
+export {searchPagePath, resultsSearchPagePath};

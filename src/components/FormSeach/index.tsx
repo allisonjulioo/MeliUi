@@ -1,11 +1,12 @@
-import React, {FormEvent, useState} from 'react';
+import React, {FormEvent, useEffect, useState} from 'react';
 import styled from 'styled-components';
-import {Button} from '../Button';
-import {theme} from 'theme';
 import {useTranslation} from 'react-i18next';
 import {useSearch} from './useSearch';
+import {Button} from '../Button';
 import {Input} from '../Input';
 import searchIcon from 'assets/search.png';
+import {theme} from 'theme';
+import {useRouter} from 'routes/useRouter';
 
 const Form = styled.form`
   border-radius: ${theme.input.radius};
@@ -23,9 +24,11 @@ const Submit = styled(Button)`
 `;
 
 const FormSeach = () => {
+  const {searchParams} = useRouter();
   const {t} = useTranslation();
   const {handleSearch} = useSearch();
-  const [search, setSearch] = useState('');
+  const {value} = searchParams();
+  const [searchBar, setSearch] = useState('');
 
   const handleChangeForm = (key: string) => {
     handleSearch(key);
@@ -34,14 +37,21 @@ const FormSeach = () => {
 
   const handleSubmitForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleChangeForm(search);
+    handleChangeForm(searchBar);
   };
+
+  useEffect(() => {
+    if (value) {
+      handleChangeForm(value);
+    }
+  }, [value]);
 
   return (
     <Form onSubmit={handleSubmitForm}>
       <Input
-        id='input-search'
-        value={search}
+        id='input-search-bar'
+        data-testid='input-search-bar'
+        value={searchBar}
         placeholder={t('searchBar.placeholder')}
         onChange={e => handleChangeForm(e.target.value)}
       />
