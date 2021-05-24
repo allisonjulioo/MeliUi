@@ -8,5 +8,8 @@
   },
   "searchPage": {
     "title": "Página de busca"
+  },
+  "detailPage": {
+    "description": "Descrição do produto"
   }
 }

@@ -3,9 +3,17 @@ const searchPage = {
   path: '/',
   exact: true,
 };
+
 const resultsSearchPage = {
   key: 'RESULTS_SEARCH_PAGE',
   path: '/items/',
   exact: true,
 };
-export {searchPage, resultsSearchPage};
+
+const productDetail = {
+  key: 'PRODUCT_DETAIL',
+  path: '/items/:id',
+  exact: true,
+};
+
+export {productDetail, resultsSearchPage, searchPage};

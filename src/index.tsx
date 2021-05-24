@@ -11,13 +11,15 @@ if (REACT_APP_ENABLE_MOCK === 'on') {
   worker.start();
 }
 
-render(
-  <StrictMode>
-    <Suspense fallback={<></>}>
-      <App />
-    </Suspense>
-  </StrictMode>,
-  document.getElementById('root'),
-);
+setTimeout(() => {
+  render(
+    <StrictMode>
+      <Suspense fallback={<></>}>
+        <App />
+      </Suspense>
+    </StrictMode>,
+    document.getElementById('root'),
+  );
+}, 1000);
 
 reportWebVitals();

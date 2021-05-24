@@ -1,6 +1,7 @@
-import {searchPage, resultsSearchPage} from './base';
+import {productDetail, resultsSearchPage, searchPage} from './base';
 
-const searchPagePath = () => searchPage.path;
+const productDetailPath = () => productDetail.path;
 const resultsSearchPagePath = () => resultsSearchPage.path;
+const searchPagePath = () => searchPage.path;
 
-export {searchPagePath, resultsSearchPagePath};
+export {productDetailPath, resultsSearchPagePath, searchPagePath};
