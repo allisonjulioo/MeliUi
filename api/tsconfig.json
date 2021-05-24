@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src/",
+    "allowJs": true,
+    "target": "es2017",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "module": "commonjs",
+    "outDir": "build",
+    "lib": ["es6"],
+
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "jest.config.js",
+    "**/*.test.ts",
+    "src/helpers/testClient"
+  ]
+}
