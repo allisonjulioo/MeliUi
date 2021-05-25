@@ -1,9 +1,9 @@
 import {Author} from './author';
-import {Item} from './item';
+import {Product} from './product';
 
 export interface ResponseListProducts {
   search?: string;
   author: Author;
   categories: string[];
-  items: Item[];
+  items: Product[];
 }

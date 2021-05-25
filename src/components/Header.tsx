@@ -5,6 +5,7 @@ import {rowAlignCenter} from 'theme/mixins';
 import {FormSeach} from './FormSeach';
 import logo from 'assets/logo.png';
 import {useTranslation} from 'react-i18next';
+import {Link} from 'react-router-dom';
 
 const Nav = styled.nav`
   background: ${theme.brand.primary};
@@ -30,7 +31,9 @@ const Header = () => {
   return (
     <Nav>
       <Container>
-        <Brand src={logo} alt={t('header.altIconLogo')} />
+        <Link to='/'>
+          <Brand src={logo} alt={t('header.altIconLogo')} />
+        </Link>
         <FormSeach />
       </Container>
     </Nav>

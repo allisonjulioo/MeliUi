@@ -42,7 +42,7 @@ const FormSeach = () => {
 
   useEffect(() => {
     if (value) {
-      handleChangeForm(value);
+      return handleChangeForm(value);
     }
   }, [value]);
 

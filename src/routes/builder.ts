@@ -1,16 +1,21 @@
-import {SearchPage} from 'pages/SearchPage';
+import {ProductDetail} from 'pages/ProductDetail';
 import {ResultsSearchPage} from 'pages/ResultsSearchPage';
+import {SearchPage} from 'pages/SearchPage';
 
-import {resultsSearchPage, searchPage} from './base';
+import {productDetail, resultsSearchPage, searchPage} from './base';
 
 const routes = [
   {
-    ...searchPage,
-    component: SearchPage,
+    ...productDetail,
+    component: ProductDetail,
   },
   {
     ...resultsSearchPage,
     component: ResultsSearchPage,
+  },
+  {
+    ...searchPage,
+    component: SearchPage,
   },
 ];
 

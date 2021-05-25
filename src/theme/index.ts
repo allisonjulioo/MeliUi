@@ -1,7 +1,7 @@
 const theme = {
   radius: '3px',
   container: {
-    width: '900px',
+    width: '1180px',
   },
   brand: {
     primary: '#ffe600',
@@ -38,29 +38,14 @@ const theme = {
     weight: '100',
   },
   button: {
-    primary: {
-      color: {
-        dark: 'light-1',
-        light: 'light-1',
-      },
-      background: {
-        color: {
-          dark: 'brand-1',
-          light: 'brand-1',
-        },
-      },
-      padding: {
-        horizontal: '20px',
-        vertical: '12px',
-      },
+    radius: '4px',
+    padding: {
+      horizontal: '12px',
+      vertical: '32px',
     },
-    border: {
-      color: {
-        dark: 'brand-2',
-        light: 'brand-1',
-      },
-      width: '0px',
-      radius: '8px',
+    primary: {
+      color: '#ffffff',
+      background: '#3483fa',
     },
   },
   spacing: {
