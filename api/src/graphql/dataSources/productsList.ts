@@ -1,9 +1,6 @@
-import {RESTDataSource, HTTPCache} from 'apollo-datasource-rest';
-import {config} from 'dotenv';
 import {Product} from '../../models/product';
 import {ResponseListProducts} from '../../models/products';
-
-config();
+import {BaseDataSource} from './base';
 
 interface ResponseApiRest {
   results: ResponseListProducts[];
@@ -51,13 +48,7 @@ interface ResponseResultsArrayRest extends Product {
   ];
 }
 
-class ProductsList extends RESTDataSource {
-  constructor() {
-    super();
-    this.baseURL = process.env.MELI_API_ENDPOINT_REST;
-    this.httpCache = new HTTPCache();
-  }
-
+class ProductsList extends BaseDataSource {
   private extractCategories(response: ResponseApiRest): string[] {
     const categories = response.filters.find(({id}) => id === 'category');
     const values = categories?.values[0].path_from_root;
@@ -117,7 +108,7 @@ class ProductsList extends RESTDataSource {
   }
 
   public async getProducts(search: string) {
-    const response = await this.get(`/search?q=${search}`);
+    const response = await this.get(`sites/MLB/search?q=${search}`);
 
     return {
       author: {

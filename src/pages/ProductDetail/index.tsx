@@ -23,7 +23,7 @@ const Picture = styled.img`
   width: 680px;
   height: 680px;
   margin-right: ${theme.spacing.medium};
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 const ProductDetail = () => {

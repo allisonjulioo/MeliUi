@@ -7,12 +7,12 @@ export interface Product {
     amount: number;
     decimals: number;
   };
-  state: {
+  state?: {
     id: string;
     name: string;
   };
   picture: string;
   condition: string;
-  free_shipping: boolean;
-  description: string;
+  free_shipping?: boolean;
+  description?: string;
 }

@@ -34,7 +34,7 @@ const Image = styled.img`
 
 const Heading = styled.section`
   margin-top: ${theme.spacing.small};
-  flex: 0.8;
+  min-width: 67%;
 `;
 
 const Price = styled.h3`

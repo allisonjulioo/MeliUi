@@ -8,7 +8,7 @@ interface ProductsHook {
 }
 
 const GET_PRODUCTS = gql`
-  query Query($search: String) {
+  query ProductsList($search: String) {
     productsList(search: $search) {
       categories
       items {

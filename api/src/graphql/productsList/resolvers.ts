@@ -1,4 +1,4 @@
-import {ProductsList} from '../dataSources/products';
+import {ProductsList} from '../dataSources/productsList';
 
 const productsListService = new ProductsList();
 

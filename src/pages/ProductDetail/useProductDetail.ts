@@ -13,8 +13,11 @@ const useProductDetail = () => {
   const [error, setError] = useState<unknown>();
 
   const getProductDetail = useCallback(async () => {
-    const {data: response, errors} = await queryProductDetail(id);
-    setData(response);
+    const {
+      data: {item},
+      errors,
+    } = await queryProductDetail(id);
+    setData(item);
     setError(errors);
   }, []);
 

@@ -54,7 +54,7 @@ const theme = {
     large: '32px',
   },
   nav: {
-    height: '60px',
+    height: '54px',
   },
   input: {
     size: '18px',
