@@ -6,11 +6,9 @@ import {typeDefs} from './graphql/typeDefs';
 const APOLLO_CONFIG: Config = {
   typeDefs,
   resolvers,
-  context: async context => {
-    return {
-      ...context,
-    };
-  },
+  context: async context => ({
+    ...context,
+  }),
 };
 
 export {APOLLO_CONFIG};

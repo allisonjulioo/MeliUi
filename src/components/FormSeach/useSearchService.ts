@@ -3,24 +3,42 @@ import {gql} from '@apollo/client';
 import {client} from 'configs/apollo';
 
 interface ProductsHook {
-  data: ResponseListProducts;
+  productsList: ResponseListProducts;
   errors?: unknown;
 }
 
 const GET_PRODUCTS = gql`
-  query GetProducts($filter: String!) {
-    author
-    categories
-    items
+  query Query($search: String) {
+    productsList(search: $search) {
+      categories
+      items {
+        id
+        title
+        price {
+          currency
+          amount
+          decimals
+        }
+        state {
+          name
+        }
+        picture
+        condition
+        free_shipping
+      }
+    }
   }
 `;
 
-const queryProducts = async (filter?: string) => {
-  const {data, errors} = await client.query<ProductsHook>({
+const queryProducts = async (search?: string) => {
+  const {
+    data: {productsList},
+    errors,
+  } = await client.query<ProductsHook>({
     query: GET_PRODUCTS,
-    variables: {filter},
+    variables: {search},
   });
-  return {data, errors};
+  return {data: productsList, errors};
 };
 
 export {queryProducts};
