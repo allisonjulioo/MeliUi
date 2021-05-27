@@ -9,9 +9,10 @@ const primaryButton = css`
   width: 100%;
 `;
 
-const Button = styled.button<{primary?: boolean}>`
+const Button = styled.button<{primary?: boolean; size?: string}>`
   border: none;
   cursor: pointer;
+  font-size: ${({size}) => (size ? size : theme.button.size)};
   ${({primary}) => (primary ? primaryButton : '')}
   &:active {
     opacity: 0.8;

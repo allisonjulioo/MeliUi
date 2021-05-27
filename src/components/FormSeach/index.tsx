@@ -20,7 +20,7 @@ const Submit = styled(Button)`
   position: absolute;
   right: 0;
   width: 48px;
-  line-height: 3.6;
+  line-height: 3;
 `;
 
 const FormSeach = () => {

@@ -1,7 +1,7 @@
 const theme = {
   radius: '3px',
   container: {
-    width: '1180px',
+    width: '1024px',
   },
   brand: {
     primary: '#ffe600',
@@ -33,11 +33,17 @@ const theme = {
     weight: 'normal',
   },
   small: {
+    size: '16px',
+    color: 'black',
+    weight: '200',
+  },
+  xsmall: {
     size: '14px',
     color: 'black',
-    weight: '100',
+    weight: '200',
   },
   button: {
+    size: '16px',
     radius: '4px',
     padding: {
       horizontal: '12px',
@@ -61,6 +67,7 @@ const theme = {
     height: '39px',
     radius: '4px',
     border: 'none',
+    weight: '200',
   },
 };
 

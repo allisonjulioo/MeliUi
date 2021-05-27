@@ -10,10 +10,10 @@ export interface Search {
 const useSearch = () => {
   const [state, setState] = useContext(ContextProducts);
   const getListProducts = async (search: string) => {
-    const {data, errors} = await queryProducts(search);
-    setState({data, errors, search});
+    const {data, errors, loading} = await queryProducts(search);
+    setState({data, errors, search, loading});
 
-    return {data, errors};
+    return {data, errors, loading};
   };
 
   const [debouncedSearch] = useState(() => debounce(getListProducts, 500));

@@ -1,52 +1,51 @@
 import React from 'react';
-import {Card} from 'components/Card';
-import styled from 'styled-components';
 import {useProductDetail} from './useProductDetail';
 import {Button} from 'components/Button';
-import {theme} from 'theme';
 import {useTranslation} from 'react-i18next';
-
-const Container = styled(Card)`
-  min-height: 85vh;
-`;
-
-const Content = styled.div`
-  display: flex;
-`;
-
-const Heading = styled.div`
-  margin-top: ${theme.spacing.large};
-  width: 200px;
-`;
-
-const Picture = styled.img`
-  width: 680px;
-  height: 680px;
-  margin-right: ${theme.spacing.medium};
-  object-fit: contain;
-`;
+import {formatAmount, formatDecimals} from 'providers/currency';
+import {SkeletonDetail} from './SkeletonDetail';
+import {
+  Container,
+  Content,
+  Heading,
+  Sold,
+  Title,
+  Price,
+  SmallPrice,
+  Picture,
+  Description,
+  DescriptionTitle,
+  DescriptionText,
+} from './styled';
 
 const ProductDetail = () => {
   const {t} = useTranslation();
   const {data} = useProductDetail();
 
+  if (!data?.title) {
+    return <SkeletonDetail />;
+  }
+
   return (
-    <Container>
+    <Container noPadding>
       <Content>
         <Picture src={data?.picture} alt={data?.title} />
         <Heading>
-          <small>
-            {data?.condition} {data?.sold} vendidos
-          </small>
-          <h3>{data?.title}</h3>
-          <h1>{data?.price.amount}</h1>
-          <Button primary>Comprar</Button>
+          <Sold>
+            {data?.condition} - {data?.sold_quantity} vendidos
+          </Sold>
+          <Title>{data?.title}</Title>
+          <Price>
+            {formatAmount(data?.price.amount)}
+            <SmallPrice>{formatDecimals(data?.price.decimals)}</SmallPrice>
+          </Price>
+          <Button primary>{t('detailPage.button')}</Button>
         </Heading>
       </Content>
-      <div>
-        <h4>{t('detailPage.description')}</h4>
-        <small>{data?.description}</small>
-      </div>
+      <Description>
+        <DescriptionTitle>{t('detailPage.description')}</DescriptionTitle>
+        <DescriptionText>{data?.description}</DescriptionText>
+      </Description>
     </Container>
   );
 };

@@ -18,6 +18,7 @@ const GET_PRODUCTS = gql`
           currency
           amount
           decimals
+          formated
         }
         state {
           name
@@ -34,11 +35,12 @@ const queryProducts = async (search?: string) => {
   const {
     data: {productsList},
     errors,
+    loading,
   } = await client.query<ProductsHook>({
     query: GET_PRODUCTS,
     variables: {search},
   });
-  return {data: productsList, errors};
+  return {data: productsList, errors, loading};
 };
 
 export {queryProducts};

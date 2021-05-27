@@ -24,6 +24,7 @@ const GET_PRODUCT_DETAIL = gql`
           currency
           amount
           decimals
+          formated
         }
         state {
           id

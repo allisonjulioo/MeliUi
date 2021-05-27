@@ -1,11 +1,8 @@
-const currency = (currency: string, amount: number, decimals: number) => {
-  const formatter = new Intl.NumberFormat(currency, {
-    style: 'currency',
-    currency: 'BRL',
-  });
-  const number = `${amount}.${decimals}`;
-  const value = Number(Number(number).toFixed(2));
-  return formatter.format(value);
-};
+const formatAmount = (number = 0) =>
+  String(number)
+    .replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, '$1,')
+    .replace(/,/g, '.');
 
-export {currency};
+const formatDecimals = (decimals = 0) => String(decimals).padEnd(2, '0');
+
+export {formatAmount, formatDecimals};

@@ -7,6 +7,7 @@ const Input = styled.input`
   height: ${theme.input.height};
   padding: 0 ${theme.spacing.medium};
   font-size: ${theme.input.size};
+  font-weight: ${theme.input.weight};
   outline: transparent;
   width: 100%;
 `;
