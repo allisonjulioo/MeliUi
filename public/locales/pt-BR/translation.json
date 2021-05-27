@@ -2,6 +2,9 @@
   "header": {
     "altIconLogo": "Logotipo do mercado livre"
   },
+  "breadcrumb": {
+    "backResults": "Voltar para a pesquisa"
+  },
   "searchBar": {
     "placeholder": "Nunca deixe de pesquisar",
     "altIconSearch": "Ícone de busca"
@@ -10,6 +13,7 @@
     "title": "Página de busca"
   },
   "detailPage": {
-    "description": "Descrição do produto"
+    "description": "Descrição do produto",
+    "button": "Comprar"
   }
 }

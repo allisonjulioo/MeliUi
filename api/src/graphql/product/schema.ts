@@ -4,12 +4,12 @@ const productSchema = gql`
   type Product {
     id: String!
     title: String!
-    sold: Int!
+    sold: Int
     price: Price
     state: State
     picture: String!
     condition: String!
-    description: String!
+    description: String
     sold_quantity: Int!
     free_shipping: Boolean!
   }

@@ -1,10 +1,11 @@
 import {Product} from '../../models/product';
 import {ResponseListProducts} from '../../models/products';
+import {getFormated, getAmount, getDecimals} from '../../providers/currency';
 import {BaseDataSource} from './base';
 
 interface ResponseApiRest {
   results: ResponseListProducts[];
-  filters: [
+  available_filters: [
     {
       id: string;
       name: string;
@@ -25,7 +26,10 @@ interface ResponseApiRest {
   ];
 }
 
-interface ResponseResultsArrayRest extends Product {
+interface ResponseResultsArrayRest {
+  id: number;
+  title: string;
+  price: number;
   sold_quantity: number;
   prices: {
     presentation: {
@@ -49,12 +53,16 @@ interface ResponseResultsArrayRest extends Product {
 }
 
 class ProductsList extends BaseDataSource {
-  private extractCategories(response: ResponseApiRest): string[] {
-    const categories = response.filters.find(({id}) => id === 'category');
-    const values = categories?.values[0].path_from_root;
-    const categoriesArr = values?.flatMap(({name}, index) => [name]);
+  private extractCategories(response: ResponseApiRest): string[] | undefined {
+    const categories = response.available_filters.find(
+      ({id}) => id === 'category',
+    );
 
-    return categoriesArr ?? [''];
+    const categoriesArr = categories?.values?.flatMap(({name}, index) => [
+      name,
+    ]);
+
+    return categoriesArr?.splice(0, 4);
   }
 
   private extractItems(results: ResponseResultsArrayRest[]): Product[] {
@@ -76,8 +84,9 @@ class ProductsList extends BaseDataSource {
       } = prices;
       const {free_shipping} = shipping;
 
-      const amount = Math.floor(Number(price));
-      const decimals = Number(String(price).split('.')[1] ?? 0);
+      const amount = getAmount(price);
+      const decimals = getDecimals(price);
+      const formated = getFormated(currency, amount, decimals);
 
       const conditionsValues = attributes.find(
         att => att.id === 'ITEM_CONDITION',
@@ -93,6 +102,7 @@ class ProductsList extends BaseDataSource {
             currency,
             amount,
             decimals,
+            formated,
           },
           state: {
             id: state_id,
@@ -108,7 +118,7 @@ class ProductsList extends BaseDataSource {
   }
 
   public async getProducts(search: string) {
-    const response = await this.get(`sites/MLB/search?q=${search}`);
+    const response = await this.get(`sites/MLA/search?q=${search}`);
 
     return {
       author: {

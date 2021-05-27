@@ -6,6 +6,7 @@ export interface Product {
     currency: string;
     amount: number;
     decimals: number;
+    formated?: string;
   };
   state?: {
     id: string;

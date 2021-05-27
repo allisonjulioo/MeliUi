@@ -1,4 +1,5 @@
 import {Product} from '../../models/product';
+import {getAmount, getDecimals, getFormated} from '../../providers/currency';
 import {BaseDataSource} from './base';
 
 interface ResponseApiRest {
@@ -25,9 +26,23 @@ interface ResponseDetailRest extends Product {
     };
   };
   base_price: number;
+  attributes: [
+    {
+      id: string;
+      value_name: string;
+    },
+  ];
 }
 
 class ProductDetail extends BaseDataSource {
+  private extractCondition(response: ResponseDetailRest): string {
+    const condition = response.attributes.find(
+      ({id}) => id === 'ITEM_CONDITION',
+    );
+
+    return condition?.value_name ?? '';
+  }
+
   private extractProduct(response: ResponseDetailRest): ResponseApiRest {
     const {
       id,
@@ -35,12 +50,16 @@ class ProductDetail extends BaseDataSource {
       base_price,
       sold_quantity,
       currency_id,
-      condition,
       pictures,
       seller_address: {state},
       domain_id,
       description,
     } = response;
+
+    const amount = getAmount(base_price);
+    const decimals = getDecimals(base_price);
+    const formated = getFormated(currency_id, amount, decimals);
+    const condition = this.extractCondition(response);
 
     return {
       author: {
@@ -52,8 +71,9 @@ class ProductDetail extends BaseDataSource {
         title,
         price: {
           currency: currency_id,
-          amount: base_price,
-          decimals: 1,
+          amount,
+          decimals,
+          formated,
         },
         state,
         picture: pictures[0].url,
@@ -70,7 +90,7 @@ class ProductDetail extends BaseDataSource {
 
     const {author, item} = this.extractProduct({
       ...response,
-      description: 'description.plain_text',
+      description: description.plain_text,
     });
 
     return {author, item};
