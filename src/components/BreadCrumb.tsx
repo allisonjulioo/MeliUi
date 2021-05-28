@@ -51,7 +51,7 @@ const BreadCrumb = () => {
               onClick={() => getListProducts(category)}
               data-testid='item-category'
             >
-              {`${category}`}
+              {category}
             </Anchor>
             {index !== categories.length - 1 && <Icon>›</Icon>}
           </Li>

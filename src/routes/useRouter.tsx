@@ -8,8 +8,9 @@ const useRouter = () => {
   const history = useHistory();
   const {search: queryString} = useLocation();
 
-  const [context] = useContext<{data: ContextSearch}[]>(ContextProducts);
-  const {search} = context?.data ?? {data: {search: ''}};
+  const [context] =
+    useContext<{data: ContextSearch; search: string}[]>(ContextProducts);
+  const {search} = context ?? {data: {search: ''}};
 
   const searchParams = () => {
     const params = new URLSearchParams(queryString);
