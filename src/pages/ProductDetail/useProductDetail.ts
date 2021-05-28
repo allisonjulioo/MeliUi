@@ -17,6 +17,7 @@ const useProductDetail = () => {
       data: {item},
       errors,
     } = await queryProductDetail(id);
+
     setData(item);
     setError(errors);
   }, []);

@@ -27,7 +27,7 @@ const ProductDetail = () => {
   }
 
   return (
-    <Container noPadding>
+    <Container noPadding id='detail-page'>
       <Content>
         <Picture src={data?.picture} alt={data?.title} />
         <Heading>
