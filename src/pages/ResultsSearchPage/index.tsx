@@ -16,7 +16,7 @@ import {SkeletonList} from './SkeletonList';
 
 const ResultsSearchPage = () => {
   const [products, setProducts] = useState<ResponseListProducts>();
-  const [data] = useContext(ContextProducts);
+  const [data] = useContext<{data: ResponseListProducts}[]>(ContextProducts);
 
   useEffect(() => setProducts(data?.data), [data]);
 
@@ -25,15 +25,27 @@ const ResultsSearchPage = () => {
   }
 
   return (
-    <Container noPadding>
-      {products?.items.map((product, index) => (
-        <Item key={index} to={`/items/${product.id}`}>
-          <Image src={product.picture} alt={product.title} />
+    <Container noPadding id='result-search'>
+      {products?.items?.map((product, index) => (
+        <Item
+          key={index}
+          to={`/items/${product.id}`}
+          data-testid='product-result'
+        >
+          <Image
+            data-testid='product-image'
+            src={product.picture}
+            alt={product.title}
+          />
           <Heading>
             <Price>
               {product.price.formated}
               {product.free_shipping && (
-                <FreeShipping src={searchIcon} height='20' />
+                <FreeShipping
+                  data-testid='product-free-shipping'
+                  src={searchIcon}
+                  height='20'
+                />
               )}
             </Price>
             <Description>{product.title}</Description>

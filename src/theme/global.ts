@@ -1,8 +1,7 @@
 import {createGlobalStyle} from 'styled-components';
 import {theme} from 'theme';
 
-const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500&display=swap');
+const GlobalStyle = createGlobalStyle` 
 *{
   margin: 0;
   padding: 0;

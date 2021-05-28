@@ -26,7 +26,7 @@ const Submit = styled(Button)`
 const FormSeach = () => {
   const {searchParams} = useRouter();
   const {t} = useTranslation();
-  const {handleSearch} = useSearch();
+  const {handleSearch, getListProducts} = useSearch();
   const {value} = searchParams();
   const [searchBar, setSearch] = useState('');
 
@@ -37,25 +37,25 @@ const FormSeach = () => {
 
   const handleSubmitForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleChangeForm(searchBar);
+    getListProducts(searchBar);
   };
 
   useEffect(() => {
     if (value) {
       return handleChangeForm(value);
     }
+    handleChangeForm('');
   }, [value]);
 
   return (
-    <Form onSubmit={handleSubmitForm}>
+    <Form onSubmit={handleSubmitForm} data-testid='form-search-bar'>
       <Input
-        id='input-search-bar'
         data-testid='input-search-bar'
         value={searchBar}
         placeholder={t('searchBar.placeholder')}
         onChange={e => handleChangeForm(e.target.value)}
       />
-      <Submit type='submit'>
+      <Submit type='submit' data-testid='submit-search-bar'>
         <img src={searchIcon} alt={t('searchBar.altIconSearch')} height='16' />
       </Submit>
     </Form>

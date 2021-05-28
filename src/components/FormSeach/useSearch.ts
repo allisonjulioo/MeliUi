@@ -16,10 +16,15 @@ const useSearch = () => {
     return {data, errors, loading};
   };
 
-  const [debouncedSearch] = useState(() => debounce(getListProducts, 500));
+  const [debouncedSearch] = useState(() => debounce(getListProducts, 1000));
 
-  const handleSearch = (value: string) => debouncedSearch(value);
+  const handleSearch = (value: string) => {
+    if (value.length <= 2) {
+      return;
+    }
+    return debouncedSearch(value);
+  };
 
-  return {state, handleSearch};
+  return {state, handleSearch, getListProducts};
 };
 export {useSearch};

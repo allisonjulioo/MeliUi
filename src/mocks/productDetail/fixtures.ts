@@ -1,23 +1,33 @@
 const success = {
   data: {
-    id: 1,
-    title: 'Deco reverse Sombrero Oxford',
-    sold: 100,
-    price: {
-      currency: 'pt-BR',
-      amount: 1980,
-      decimals: 1,
+    productDetail: {
+      author: {
+        name: 'Alison',
+        lastname: 'Nunes',
+      },
+      item: {
+        id: 1,
+        title: 'Deco reverse Sombrero Oxford',
+        sold: 100,
+        price: {
+          currency: 'pt-BR',
+          amount: 1980,
+          formated: 'R$ 1.980,10',
+          symbol: 'R$',
+        },
+        state: {
+          id: 'BR-BR',
+          name: 'Brasilia',
+        },
+        picture:
+          'https://cdn.dooca.store/165/products/rvawndot1g3dg1azralwm7zh8xkbtqx8u3v1_620x620+fill_ffffff.jpg?v=1606182673',
+        condition: 'Novo',
+        free_shipping: true,
+        sold_quantity: 100,
+        description: `Estamos há mais de 3 anos no mercado, nos dedicamos a participar da história de nossos clientes, oferecendo produtos que tornam os seus momentos inesquecíveis. Aqui você encontra aparelhos exclusivos novos e seminovos (Vitrine) para todos os gostos. Atentos às inovações do mercado, estamos sempre em busca de novas tecnologias e aparelhos.
+      A TechStore_SP foi criada e desenvolvida especialmente para atender um público diferenciado, que exige qualidade e bom gosto.`,
+      },
     },
-    state: {
-      id: 'BR-BR',
-      name: 'Brasilia',
-    },
-    picture:
-      'https://cdn.dooca.store/165/products/rvawndot1g3dg1azralwm7zh8xkbtqx8u3v1_620x620+fill_ffffff.jpg?v=1606182673',
-    condition: 'Novo',
-    free_shipping: true,
-    description: `Estamos há mais de 3 anos no mercado, nos dedicamos a participar da história de nossos clientes, oferecendo produtos que tornam os seus momentos inesquecíveis. Aqui você encontra aparelhos exclusivos novos e seminovos (Vitrine) para todos os gostos. Atentos às inovações do mercado, estamos sempre em busca de novas tecnologias e aparelhos.
-    A TechStore_SP foi criada e desenvolvida especialmente para atender um público diferenciado, que exige qualidade e bom gosto.`,
   },
 };
 

@@ -2,7 +2,7 @@ import {graphql} from 'msw';
 import {success, notFound} from './fixtures';
 
 const handlers = [
-  graphql.query('GetProductDetail', (req, res, ctx) => {
+  graphql.query('ProductDetail', (req, res, ctx) => {
     const {token} = req.variables;
     sessionStorage.setItem('@@msw:scenarios', token);
 

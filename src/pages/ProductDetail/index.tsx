@@ -36,7 +36,7 @@ const ProductDetail = () => {
           </Sold>
           <Title>{data?.title}</Title>
           <Price>
-            {formatAmount(data?.price.amount)}
+            {data?.price.symbol} {formatAmount(data?.price.amount)}
             <SmallPrice>{formatDecimals(data?.price.decimals)}</SmallPrice>
           </Price>
           <Button primary>{t('detailPage.button')}</Button>

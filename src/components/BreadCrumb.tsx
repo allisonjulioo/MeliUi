@@ -2,9 +2,9 @@ import React, {useContext} from 'react';
 import styled from 'styled-components';
 import {theme} from 'theme';
 import {rowAlignCenter, rowJustifyCenter} from 'theme/mixins';
-import {ContextSearch} from 'models/context';
 import {ContextProducts} from 'useList';
 import {useSearch} from './FormSeach/useSearch';
+import {ResponseListProducts} from 'models/products';
 
 const Container = styled.div`
   padding: ${theme.spacing.small} 0;
@@ -34,27 +34,26 @@ const Anchor = styled.a`
 `;
 
 const Icon = styled.span`
-  font-size: 12px;
   margin-left: ${theme.spacing.small};
 `;
 
 const BreadCrumb = () => {
-  const [context] = useContext<ContextSearch[]>(ContextProducts);
-  const {handleSearch} = useSearch();
-
-  const {
-    data: {categories},
-  } = context ?? {data: {categories: []}};
+  const [context] = useContext<{data: ResponseListProducts}[]>(ContextProducts);
+  const categories = context?.data?.categories;
+  const {getListProducts} = useSearch();
 
   return (
     <Container>
       <Ul>
         {categories?.map((category, index) => (
           <Li key={index}>
-            <Anchor onClick={() => handleSearch(category)}>
+            <Anchor
+              onClick={() => getListProducts(category)}
+              data-testid='item-category'
+            >
               {`${category}`}
             </Anchor>
-            {index !== categories.length - 1 && <Icon>ᐳ</Icon>}
+            {index !== categories.length - 1 && <Icon>›</Icon>}
           </Li>
         ))}
       </Ul>

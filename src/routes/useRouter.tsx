@@ -8,8 +8,8 @@ const useRouter = () => {
   const history = useHistory();
   const {search: queryString} = useLocation();
 
-  const [context] = useContext<ContextSearch[]>(ContextProducts);
-  const {search} = context ?? {search: ''};
+  const [context] = useContext<{data: ContextSearch}[]>(ContextProducts);
+  const {search} = context?.data ?? {data: {search: ''}};
 
   const searchParams = () => {
     const params = new URLSearchParams(queryString);
@@ -19,7 +19,7 @@ const useRouter = () => {
   };
 
   useEffect(() => {
-    if (search.length > 0) {
+    if (search?.length > 0) {
       return history.push({
         pathname: resultsSearchPage.path,
         search: `?search=${search}`,

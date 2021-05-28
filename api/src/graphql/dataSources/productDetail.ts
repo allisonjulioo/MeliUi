@@ -1,3 +1,4 @@
+import {currencySymbols} from '../../helpers/currencySymbols';
 import {Product} from '../../models/product';
 import {getAmount, getDecimals, getFormated} from '../../providers/currency';
 import {BaseDataSource} from './base';
@@ -49,7 +50,7 @@ class ProductDetail extends BaseDataSource {
       title,
       base_price,
       sold_quantity,
-      currency_id,
+      currency_id: currency,
       pictures,
       seller_address: {state},
       domain_id,
@@ -58,8 +59,11 @@ class ProductDetail extends BaseDataSource {
 
     const amount = getAmount(base_price);
     const decimals = getDecimals(base_price);
-    const formated = getFormated(currency_id, amount, decimals);
+    const formated = getFormated(currency, amount, decimals);
     const condition = this.extractCondition(response);
+    const symbol = currencySymbols.find(
+      ({code}) => code === currency,
+    )?.symbol_native;
 
     return {
       author: {
@@ -70,10 +74,11 @@ class ProductDetail extends BaseDataSource {
         id,
         title,
         price: {
-          currency: currency_id,
+          currency,
           amount,
           decimals,
           formated,
+          symbol,
         },
         state,
         picture: pictures[0].url,

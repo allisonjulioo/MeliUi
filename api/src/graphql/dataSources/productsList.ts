@@ -118,7 +118,7 @@ class ProductsList extends BaseDataSource {
   }
 
   public async getProducts(search: string) {
-    const response = await this.get(`sites/MLA/search?q=${search}`);
+    const response = await this.get(`sites/MLB/search?q=${search}`);
 
     return {
       author: {

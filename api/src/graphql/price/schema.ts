@@ -6,6 +6,7 @@ const priceSchema = gql`
     amount: String
     decimals: String
     formated: String
+    symbol: String
   }
 `;
 

@@ -6,6 +6,7 @@ import {FormSeach} from './FormSeach';
 import logo from 'assets/logo.png';
 import {useTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
+import {useSearch} from './FormSeach/useSearch';
 
 const Nav = styled.nav`
   background: ${theme.brand.primary};
@@ -28,10 +29,12 @@ const Container = styled.div`
 
 const Header = () => {
   const {t} = useTranslation();
+  const {getListProducts} = useSearch();
+
   return (
     <Nav>
       <Container>
-        <Link to='/'>
+        <Link to='/' onClick={() => getListProducts('')}>
           <Brand src={logo} alt={t('header.altIconLogo')} />
         </Link>
         <FormSeach />
