@@ -1,46 +1,152 @@
-# Getting Started with Create React App
+#  Meli Front End Test 
+### Instruction to run and performance app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![N|Solid](https://http2.mlstatic.com/frontend-assets/ui-navigation/5.14.5/mercadolibre/logo-pt__large_plus.png)](https://nodesource.com/products/nsolid)
+ 
+This project was developed for the testing of MELI *software enginner* the application has the client's 
+part and an api the solution was developed with:
 
-## Available Scripts
+- ReactJS Client
+- Apollo Server
+- Graphql contract
 
-In the project directory, you can run:
+## Important!!
 
-### `yarn start`
+>Initially to save time and do the tests it was the MSW to mock the calls GraphQl before creating the api, 
+>to disable the mock of the api, go to `.env` and assign it off to the variable `REACT_APP_ENABLE_MOCK`
+ 
+## Client dependencies
+ 
+- [Apollo Client](https://github.com/apollographql/apollo-client)
+- [Lodash Debounce](https://github.com/lodash/lodash)
+- [Styled Components](https://github.com/styled-components/styled-components)
+- [i18next](https://github.com/i18next/i18next)
+- [Mock Service Worker (msw)](https://github.com/mswjs/msw)
+- [Typescript](https://github.com/microsoft/TypeScript)
+- [GrapQl](https://github.com/graphql)
+ 
+## Server dependencies
+ 
+- [Apollo Server](https://github.com/apollographql/apollo-server)
+- [Apollo Server Express](https://github.com/apollographql/apollo-server/tree/main/packages/apollo-server-express)
+- [Styled Components](https://github.com/apollographql/apollo-server/tree/main/packages/apollo-server-testing)
+- [Apollo Server Testing](https://github.com/i18next/i18next)
+- [Typescript](https://github.com/microsoft/TypeScript)
+- [GrapQl](https://github.com/graphql)
+ 
+ 
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This app requires [Node.js](https://nodejs.org/) v12+ to run.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Install the dependencies and and start the client app.
 
-### `yarn test`
+```sh
+cd meli-test
+npm install
+npm run start
+```
+Install the dependencies and and start the server app.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+cd meli-test/api
+npm install
+npm run start
+```
 
-### `yarn build`
+#### Enable/Disable Mockable API MSW
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+cd meli-test/.env
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| Variable | Value |
+| ------ | ------ |
+| REACT_APP_ENABLE_MOCK | on |
+| REACT_APP_ENABLE_MOCK | off |
+ 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Run tests
+cd meli-test
+ 
+```sh
+npm run test
+```
 
-### `yarn eject`
+## Avaliable routes client
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| Description | Path |
+| ------ | ------ |
+| Search page | http://localhost:3000/ |
+| Results page | http://localhost:3000/items/?search=iphone |
+| Detail produdct | http://localhost:3000/items/MLA865683438 |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Avaliable routes server
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Api | Route |
+| ------ | ------ |
+| Query GraphQl | http://localhost:4000/graphql |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Query Product List
+
+Variable `search` String!
+
+```
+  query ProductsList($search: String) {
+    productsList(search: $search) {
+      categories
+      items {
+        id
+        title
+        price {
+          currency
+          amount
+          decimals
+          formated
+        }
+        state {
+          name
+        }
+        picture
+        condition
+        free_shipping
+      }
+    }
+  }
+```
+### Query Product Detail
+Variable `id` String!
+```
+  query ProductDetail($id: String) {
+    productDetail(id: $id) {
+      author {
+        name
+        lastname
+      }
+      item {
+        id
+        title
+        price {
+          currency
+          amount
+          decimals
+          formated
+          symbol
+        }
+        state {
+          id
+          name
+        }
+        picture
+        condition
+        sold_quantity
+        description
+      }
+    }
+  }
+```
+
+**Thanks!**
+ 
+ 
