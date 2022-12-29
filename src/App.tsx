@@ -1,15 +1,14 @@
-import React from 'react';
-import {Router} from 'routes/Router';
-import {GlobalStyle} from 'theme/global';
+import {BreadCrumb} from 'components/BreadCrumb';
 import {Header} from 'components/Header';
 import {Layout} from 'components/Layout';
+import {HashRouter} from 'react-router-dom';
+import {Router} from 'routes/Router';
+import {GlobalStyle} from 'theme/global';
 import {ProductsContext} from 'useList';
-import {BreadCrumb} from 'components/BreadCrumb';
-import {BrowserRouter} from 'react-router-dom';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ProductsContext>
         <GlobalStyle />
         <Header />
@@ -18,7 +17,7 @@ const App = () => {
           <Router />
         </Layout>
       </ProductsContext>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 export {App};
