@@ -3,7 +3,7 @@
 
 [![N|Solid](https://http2.mlstatic.com/frontend-assets/ui-navigation/5.14.5/mercadolibre/logo-pt__large_plus.png)](https://nodesource.com/products/nsolid)
  
-This project was developed for the testing of MELI *software enginner* the application has the client's 
+This project was developed for the testing api MELI the application has the client's 
 part and an api the solution was developed with:
 
 - ReactJS Client
